@@ -1,6 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UserModule } from './user/user.module';
+import { ConversationModule } from './conversation/conversation.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import idPlugin from './utils/id.plugin';
 
 @Module({
   imports: [
@@ -11,6 +15,8 @@ import { AppService } from './app.service';
         return connection;
       },
     }),
+    UserModule,
+    ConversationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
