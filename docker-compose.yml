@@ -1,6 +1,19 @@
-version: '3.8'
+version: "3.8"
 
 services:
+  api:
+    container_name: api
+    env_file: .exemple.env
+    volumes:
+      - ./api/src:/app/src
+    build:
+      context: ./api
+    ports:
+      - ${API_PORT}:3000
+    depends_on:
+      mongo:
+        condition: service_healthy
+
   mongo:
     container_name: mongo
     image: mongo:7.0
