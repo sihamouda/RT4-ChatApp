@@ -1,15 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ObjectId } from 'mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
+import { MessageStatus, MessageType } from 'src/utils/const';
 
-enum MessageStatus {
-  SENT = 'sent',
-  DELIVIERED = 'deliviered',
-  SEEN = 'seen',
-}
-enum MessageType {
-  TEXT = 'text',
-}
+
 
 @Schema({ timestamps: true })
 export class Message {

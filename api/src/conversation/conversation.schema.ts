@@ -1,10 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ObjectId } from 'mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
+import { Theme } from 'src/utils/const';
 
-enum Theme {
-  DEFAULT = 'default',
-}
+
 
 @Schema({ timestamps: true })
 export class Conversation {
