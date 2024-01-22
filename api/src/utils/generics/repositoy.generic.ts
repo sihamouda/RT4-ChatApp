@@ -1,5 +1,5 @@
 import { FilterQuery, Model, SortOrder } from 'mongoose';
-import { PageQueryDto as PageQueryDto } from './pagination-query.dto';
+import { PageQueryDto as PageQueryDto } from '../pagination/pagination-query.dto';
 
 export abstract class BaseRepository<T, C, U> {
   constructor(private readonly model: Model<T>) {}

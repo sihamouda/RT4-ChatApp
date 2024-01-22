@@ -4,7 +4,8 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { ConversationModule } from './conversation/conversation.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import idPlugin from './utils/id.plugin';
+import { LoggerModule } from './logger/logger.module';
+import idPlugin from './utils/mongoose/id.plugin';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import idPlugin from './utils/id.plugin';
     }),
     UserModule,
     ConversationModule,
+    LoggerModule,
   ],
   controllers: [AppController],
   providers: [AppService],

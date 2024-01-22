@@ -49,14 +49,13 @@ export class User {
     default: UserStatus['ONLINE'],
     enum: UserStatus,
   })
-  status: UserStatus
+  status: UserStatus;
 
   @Prop([{ type: MongooseSchema.Types.ObjectId, ref: 'User' }])
   friendsWith: ObjectId[];
 
   @Prop([{ type: MongooseSchema.Types.ObjectId, ref: 'Conversation' }])
   conversations: ObjectId[];
-
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
