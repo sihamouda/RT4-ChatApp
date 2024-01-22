@@ -1,12 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { hashSync } from 'bcryptjs';
-import { ObjectId } from 'mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
 import { UserStatus } from 'src/utils/const';
 import Timezone from 'timezone-enum';
 
 @Schema({ timestamps: true })
 export class User {
+  id: string;
+
   @Prop({
     type: String,
     unique: true,
@@ -52,10 +53,10 @@ export class User {
   status: UserStatus;
 
   @Prop([{ type: MongooseSchema.Types.ObjectId, ref: 'User' }])
-  friendsWith: ObjectId[];
+  friendsWith: string[];
 
   @Prop([{ type: MongooseSchema.Types.ObjectId, ref: 'Conversation' }])
-  conversations: ObjectId[];
+  conversations: string[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

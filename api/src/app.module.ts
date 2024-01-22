@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { ConversationModule } from './conversation/conversation.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { LoggerModule } from './logger/logger.module';
+import { AuthenticationModule } from './authentication/authentication.module';
 import idPlugin from './utils/mongoose/id.plugin';
 
 @Module({
@@ -19,6 +20,7 @@ import idPlugin from './utils/mongoose/id.plugin';
     UserModule,
     ConversationModule,
     LoggerModule,
+    AuthenticationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
