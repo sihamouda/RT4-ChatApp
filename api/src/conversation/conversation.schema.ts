@@ -1,22 +1,19 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { ObjectId } from 'mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
 import { Theme } from 'src/utils/const';
-
-
 
 @Schema({ timestamps: true })
 export class Conversation {
   @Prop([{ type: MongooseSchema.Types.ObjectId, ref: 'User', required: true }])
-  members: ObjectId[];
+  members: string[];
 
   @Prop([{ type: MongooseSchema.Types.ObjectId, ref: 'Message' }])
-  messages?: ObjectId[];
+  messages?: string[];
 
   @Prop({
     type: Object,
   })
-  nicknames?: [ObjectId, string][];
+  nicknames?: [string, string][];
 
   @Prop({
     type: String,

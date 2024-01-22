@@ -11,7 +11,11 @@ export class UserService extends BaseService<
   UserCreateDto,
   UserUpdateDto
 > {
-  constructor(userRepository: UserRepository) {
+  constructor(private readonly userRepository: UserRepository) {
     super(userRepository);
+  }
+
+  async findByUsername(username: string): Promise<User> {
+    return await this.userRepository.findByUsernameQuery(username);
   }
 }

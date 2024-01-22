@@ -1,9 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { ObjectId } from 'mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
 import { MessageStatus, MessageType } from 'src/utils/const';
-
-
 
 @Schema({ timestamps: true })
 export class Message {
@@ -15,14 +12,14 @@ export class Message {
   type: MessageType;
 
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User', required: true })
-  sender: ObjectId;
+  sender: string;
 
   @Prop({
     type: MongooseSchema.Types.ObjectId,
     ref: 'Conversation',
     required: true,
   })
-  conversation: ObjectId;
+  conversation: string;
 
   @Prop({
     type: String,

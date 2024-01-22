@@ -9,6 +9,7 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { PageQueryDto } from '../utils/pagination/pagination-query.dto';
@@ -19,7 +20,9 @@ import { UserSearchDto } from './dto/user-search.dto';
 import { PageQueryPipe } from '../utils/pagination/pagination-query.pipe';
 import { UserSearchQueryPipe } from '../utils/user-search-query.pipe';
 import { User } from './schema/user.schema';
+import { SessionAuthenticationGuard } from '../authentication/session-authentication.guards';
 
+@UseGuards(SessionAuthenticationGuard)
 @Controller('user')
 export class UserController {
   constructor(
