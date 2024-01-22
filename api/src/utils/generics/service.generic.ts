@@ -1,5 +1,5 @@
 import { FilterQuery } from 'mongoose';
-import { PageQueryDto } from './pagination-query.dto';
+import { PageQueryDto } from '../pagination/pagination-query.dto';
 import { BaseRepository } from './repositoy.generic';
 
 export abstract class BaseService<T, C, U> {

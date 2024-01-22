@@ -2,6 +2,8 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { hashSync } from 'bcryptjs';
 import { ObjectId } from 'mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
+import { UserStatus } from 'src/utils/const';
+import Timezone from 'timezone-enum';
 
 @Schema({ timestamps: true })
 export class User {
@@ -28,18 +30,32 @@ export class User {
 
   @Prop({
     type: String,
-    maxLength: 255,
-    default: 'GMT',
+    unique: true,
+    required: true,
   })
-  timezone: string;
+  imagePath: string;
+
+  @Prop({
+    type: String,
+    required: true,
+    default: Timezone['US/Pacific'],
+    enum: Timezone,
+  })
+  timezone: Timezone;
+
+  @Prop({
+    required: true,
+    type: String,
+    default: UserStatus['ONLINE'],
+    enum: UserStatus,
+  })
+  status: UserStatus;
 
   @Prop([{ type: MongooseSchema.Types.ObjectId, ref: 'User' }])
   friendsWith: ObjectId[];
 
   @Prop([{ type: MongooseSchema.Types.ObjectId, ref: 'Conversation' }])
   conversations: ObjectId[];
-
-  messages?: ObjectId[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
@@ -57,10 +73,4 @@ UserSchema.pre<User>('save', async function (next) {
   } catch (err) {
     return next(err);
   }
-});
-
-UserSchema.virtual('messages', {
-  ref: 'Message',
-  localField: '_id',
-  foreignField: 'sender',
 });
