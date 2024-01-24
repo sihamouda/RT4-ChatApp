@@ -20,7 +20,7 @@ import { UserSearchDto } from './dto/user-search.dto';
 import { PageQueryPipe } from '../utils/pagination/pagination-query.pipe';
 import { UserSearchQueryPipe } from '../utils/user-search-query.pipe';
 import { User } from './schema/user.schema';
-import { SessionAuthenticationGuard } from '../authentication/session-authentication.guards';
+import { SessionAuthenticationGuard } from '../authentication/guards/session-authentication.guards';
 
 @UseGuards(SessionAuthenticationGuard)
 @Controller('user')
