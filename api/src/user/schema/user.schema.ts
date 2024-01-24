@@ -20,6 +20,20 @@ export class User {
     unique: true,
     required: true,
   })
+  first_name: string;
+
+  @Prop({
+    type: String,
+    unique: true,
+    required: true,
+  })
+  last_name: string;
+
+  @Prop({
+    type: String,
+    unique: true,
+    required: true,
+  })
   email: string;
 
   @Prop({

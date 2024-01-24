@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as session from 'express-session';
 import * as passport from 'passport';
 
@@ -10,6 +11,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
 
+  /** 
+    activate express session middleware 
+   **/
   app.use(
     session({
       name: 'session_id',
@@ -26,9 +30,29 @@ async function bootstrap() {
       },
     }),
   );
+
+  /** 
+    activate passport middleware 
+   **/
   app.use(passport.initialize());
   app.use(passport.session());
 
+  /** 
+    exporse swagger documentation for dev env only on /docs
+   **/
+  if (!isProduction) {
+    const config = new DocumentBuilder()
+      .setTitle('Chat App')
+      .setDescription('Chat App API documentation')
+      .setVersion('1.0')
+      .build();
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('docs', app, document);
+  }
+
+  /** 
+    open http adaptater on port 3000 
+   **/
   await app.listen(3000);
 }
 bootstrap();
