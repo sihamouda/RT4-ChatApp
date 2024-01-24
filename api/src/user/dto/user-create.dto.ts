@@ -19,11 +19,11 @@ export class UserCreateDto {
   @MinLength(5)
   password: string;
 
-  @IsNotEmpty()
-  @IsEnum(Timezone)
-  timzeone: string;
+  // @IsNotEmpty()
+  // @IsEnum(Timezone)
+  // timzeone: string;
 
-  @IsNotEmpty()
-  @IsAlphanumeric()
-  imagePath: string;
+  // @IsNotEmpty()
+  // @IsAlphanumeric()
+  // imagePath: string;
 }

@@ -6,9 +6,11 @@ import { AuthenticationSerializer } from './passport/session.serializer';
 import { LocalStrategy } from './passport/local.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { SessionAuthenticationGuard } from './guards/session-authentication.guards';
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
+    UserModule,
     PassportModule.register({
       session: true,
     }),

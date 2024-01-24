@@ -17,6 +17,7 @@ export class UserSearchQueryPipe
   implements PipeTransform<Username | Email, UserSearchDto>
 {
   transform(value: Username | Email) {
+    if (!value) return undefined;
     if (isUsername(value)) {
       return value as UserSearchDto;
     }

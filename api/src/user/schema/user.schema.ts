@@ -32,7 +32,6 @@ export class User {
   @Prop({
     type: String,
     unique: true,
-    required: true,
   })
   imagePath: string;
 

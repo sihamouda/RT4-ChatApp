@@ -20,8 +20,8 @@ export class AuthenticationController {
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  login(): { status: string } {
-    return { status: 'ok' };
+  login() {
+    return { success: true };
   }
 
   @Post('logout')
@@ -33,7 +33,7 @@ export class AuthenticationController {
       }
     });
 
-    return { status: 'ok' };
+    return { success: true };
   }
 
   @Post('signup')

@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import session from 'express-session';
-import passport from 'passport';
+import * as session from 'express-session';
+import * as passport from 'passport';
 
 async function bootstrap() {
   const isProduction = process.env.NODE_ENV.toLowerCase().includes('prod');
