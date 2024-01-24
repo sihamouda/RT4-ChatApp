@@ -13,7 +13,7 @@ export class Conversation {
   @Prop({
     type: Object,
   })
-  nicknames?: [string, string][];
+  nicknames?: Record<string, string>;
 
   @Prop({
     type: String,

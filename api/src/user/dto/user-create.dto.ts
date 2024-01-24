@@ -4,7 +4,7 @@ import {
   IsEnum,
   IsNotEmpty,
   MinLength,
-} from 'class-validator';
+} from '@nestjs/class-validator';
 import Timezone from 'timezone-enum';
 import { ApiProperty } from '@nestjs/swagger';
 
