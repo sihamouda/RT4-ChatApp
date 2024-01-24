@@ -36,8 +36,8 @@ export class AuthenticationController {
     return { success: true };
   }
 
-  @Post('signup')
-  async signup(@Body() userCreateDto: UserCreateDto) {
+  @Post('register')
+  async register(@Body() userCreateDto: UserCreateDto) {
     try {
       await this.userService.create(userCreateDto);
       return { success: true };
