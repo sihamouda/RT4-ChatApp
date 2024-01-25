@@ -1,0 +1,19 @@
+.nav {
+  height: 760px;
+  background: #e2e2e2;
+}
+
+
+.image{
+  margin-top: 50px;
+}
+
+.clickable-image {
+  width: 20px;
+  height: 20px;
+  transition: box-shadow 0.3s ease; 
+}
+
+.clickable-image:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect on hover */
+}

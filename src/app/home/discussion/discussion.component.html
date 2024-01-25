@@ -1,0 +1,15 @@
+<div>
+    <div class="row" *ngIf="recieverName">
+        <div class="col-8 conv">
+            <app-conversation [messages]="messages" recieverName="{{recieverName}}" senderName="{{senderName}}"></app-conversation>
+        </div>
+        <div class="col-4">
+            <app-rightsidebar recieverName="{{recieverName}}" recieverSourceImg="{{recieverSourceImg}}"></app-rightsidebar>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        CHOOSE A PERSON TO DISCUSS WITH.
+    </div>
+    
+</div>
+

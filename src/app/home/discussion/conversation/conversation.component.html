@@ -1,0 +1,20 @@
+<div class="mt-1 conv container">
+    <div class="d-flex align-items-center border p-3 rounded-pill z-2">
+        <div class="content">
+            <div class="name">{{recieverName}}</div>
+            <div class="message">Active</div>
+        </div>
+        <div>
+            <img src="assets/images/notification.png">
+            <img class="ms-2" src="assets/images/more.png">
+        </div>
+    </div>
+    
+    <app-list-message [messages]="messages"></app-list-message>
+
+    <div class="d-flex input-container mt-2">
+        <input class="ms-3" type="text"  placeholder="Type here!" (keyup.enter)="onEnterKeyPressed()" [(ngModel)]="inputvalue">
+        <button class="ms-2 align-self-center" type="button" (click)="onEnterKeyPressed()">Send <img class="mb-1" src="assets/images/send.png" ></button>
+    </div>
+
+</div>
