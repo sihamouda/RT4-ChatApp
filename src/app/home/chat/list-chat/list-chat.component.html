@@ -1,0 +1,8 @@
+<div>
+    <ol class="list-group mt-2" *ngFor="let personne of personnes" >
+        <li class="list-group-item" (click)="selectPersonne(personne)">
+            <app-item name="{{personne.name}}" message="{{personne.message}}" image="{{personne.image}}"
+            time="{{personne.time}}" [isActive]="personne.active"></app-item>
+        </li>
+    </ol>
+</div>
