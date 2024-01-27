@@ -3,6 +3,7 @@ import { MessageComponent } from './message/message.component';
 import { ListMessageComponent } from './list-message/list-message.component';
 import { Message } from '../../../Model/Message';
 import { FormsModule } from '@angular/forms';
+import { Friend } from '../../../Model/friend';
 
 @Component({
   selector: 'app-conversation',
@@ -13,14 +14,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class ConversationComponent {
   inputvalue:string="";
-  @Input() messages!:Message[];
-  @Input() recieverName!:string;
-  @Input() senderName!:string;
+  @Input() friend!:Friend;
+  @Input() senderImage!:string;
 
 
   onEnterKeyPressed(){
-    this.messages.unshift(
-      new Message(true,this.senderName,this.inputvalue)
+    this.friend.discussion.unshift(
+      new Message(true,this.inputvalue)
     );
     this.inputvalue=''
   }

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ConversationComponent } from './conversation/conversation.component';
 import { RightsidebarComponent } from './rightsidebar/rightsidebar.component';
 import { Message } from '../../Model/Message';
-import { PersonneService } from '../personne-service.service';
+import { PersonneService } from '../personne.service';
 import { CommonModule } from '@angular/common';
+import { Friend } from '../../Model/friend';
 
 @Component({
   selector: 'app-discussion',
@@ -13,10 +14,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './discussion.component.css'
 })
 export class DiscussionComponent implements OnInit {
-  recieverName!:string;
-  recieverSourceImg!:string;
-  messages!:Message[];
-  senderName:string="dey.png";
+  @Input() senderImage:string="dey.png";
+  friend:Friend=new Friend('','',true,[])
 
   constructor(
     private personneService: PersonneService
@@ -24,20 +23,10 @@ export class DiscussionComponent implements OnInit {
 
   ngOnInit(): void {
     this.personneService.personneDetailSubject.subscribe((personne)=>{
-      this.recieverName = personne.name;
-      this.recieverSourceImg = personne.image;
-      this.messages=[
-        new Message(true,"dey.png","Your message goes here ...."),
-        new Message(true,"dey.png","Your message goes here ...."),
-        new Message(false,this.recieverSourceImg,"Your message goes here ...."),
-        new Message(true,"dey.png","Your message goes here ...."),
-        new Message(true,"dey.png","Your message goes here ...."),
-        new Message(false,this.recieverSourceImg,"Your message goes here ...."),
-        new Message(true,"dey.png","Your message goes here ...."),
-        new Message(false,this.recieverSourceImg,"Your message goes here ...."),
-      ]
+      this.friend.name = personne.name;
+      this.friend.image = personne.image;
+      this.friend.discussion=personne.discussion
     });
-    
   }
 
   

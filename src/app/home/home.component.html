@@ -3,11 +3,9 @@
         <app-nav></app-nav>
     </div>
     <div class="col-3">
-        <!-- <app-eclipse dimension="50px" text="G" background="#8A91D7"></app-eclipse> -->
-        <app-chat></app-chat>
+        <app-chat [user]="user" [teams]="teams"></app-chat>
     </div>
     <div class="col-8">
-        <app-discussion></app-discussion>
+        <app-discussion senderImage="{{user.image}}"></app-discussion>
     </div>
-    
 </div>

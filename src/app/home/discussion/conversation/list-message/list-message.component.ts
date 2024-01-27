@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './list-message.component.css'
 })
 export class ListMessageComponent {
-  @Input() messages!:Message[]
- 
+  @Input() messages!:Message[];
+  @Input() recieverImage!:string;
+  @Input() senderImage!:string
+  
 }
