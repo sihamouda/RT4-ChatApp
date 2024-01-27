@@ -1,8 +1,8 @@
 <div>
-    <ol class="list-group mt-2" *ngFor="let personne of personnes" >
-        <li class="list-group-item" (click)="selectPersonne(personne)">
-            <app-item name="{{personne.name}}" message="{{personne.message}}" image="{{personne.image}}"
-            time="{{personne.time}}" [isActive]="personne.active"></app-item>
+    <ol class="list-group mt-2" *ngFor="let friend of personnes" >
+        <li class="list-group-item" (click)="selectPersonne(friend)">
+            <app-item name="{{friend.name}}" message="{{(friend.discussion)[0].contenu}}" image="{{friend.image}}"
+            time="20:30 pm" [isActive]="friend.active"></app-item>
         </li>
     </ol>
 </div>

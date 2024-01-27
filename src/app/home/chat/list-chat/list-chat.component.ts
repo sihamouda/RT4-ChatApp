@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ItemComponent } from '../item/item.component';
-import { Personne } from '../../../Model/personne';
-import { PersonneService } from '../../personne-service.service';
+import { PersonneService } from '../../personne.service';
+import { Friend } from '../../../Model/friend';
 
 @Component({
   selector: 'app-list-chat',
@@ -12,13 +12,13 @@ import { PersonneService } from '../../personne-service.service';
   styleUrl: './list-chat.component.css'
 })
 export class ListChatComponent {
-  @Input() personnes!:Personne[]
+  @Input() personnes!:Friend[]
 
   constructor(
     private personneService: PersonneService
   ){}
 
-  selectPersonne(personne:Personne){
-    this.personneService.showPersonneDiscussion(personne)
+  selectPersonne(friend:Friend){
+    this.personneService.showPersonneDiscussion(friend)
   }
 }

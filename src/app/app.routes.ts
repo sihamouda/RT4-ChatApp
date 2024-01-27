@@ -7,5 +7,5 @@ export const routes: Routes = [
     {path:'',component:AuthComponent},
     {path:'login',redirectTo:''},
     {path:'registration',component:RegistrationComponent},
-    {path:'home',component:HomeComponent}
+    {path:'home/:id',component:HomeComponent}
 ];

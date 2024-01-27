@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ListChatComponent } from '../list-chat/list-chat.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Personne } from '../../../Model/personne';
+import { Friend } from '../../../Model/friend';
 
 @Component({
   selector: 'app-chats',
@@ -14,7 +14,7 @@ import { Personne } from '../../../Model/personne';
 export class ChatsComponent {
   
   searchTerm: string = '';
-  @Input() personnes!:Personne[]
+  @Input() personnes!:Friend[]
 
   filteredPersonne(){
     return this.personnes.filter(personne =>
