@@ -37,10 +37,10 @@ async function bootstrap() {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  /** 
-    exporse swagger documentation for dev env only on /docs
-   **/
   if (!isProduction) {
+    /** 
+    expose swagger documentation for dev env only on /docs
+   **/
     const config = new DocumentBuilder()
       .setTitle('Chat App')
       .setDescription('Chat App API documentation')
@@ -48,6 +48,13 @@ async function bootstrap() {
       .build();
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('docs', app, document);
+
+    /** 
+    enable cors
+   **/
+    app.enableCors({
+      origin: [`http://localhost:${parseInt(process.env.CLIENT_PORT)}`],
+    });
   }
 
   /** 
