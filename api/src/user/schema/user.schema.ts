@@ -17,14 +17,12 @@ export class User {
 
   @Prop({
     type: String,
-    unique: true,
     required: true,
   })
   first_name: string;
 
   @Prop({
     type: String,
-    unique: true,
     required: true,
   })
   last_name: string;
@@ -38,16 +36,15 @@ export class User {
 
   @Prop({
     type: String,
-    unique: true,
     required: true,
   })
   password: string;
 
-  @Prop({
-    type: String,
-    unique: true,
-  })
-  imagePath: string;
+  // @Prop({
+  //   type: String,
+  //   unique: true,
+  // })
+  // imagePath: string;
 
   @Prop({
     type: String,
