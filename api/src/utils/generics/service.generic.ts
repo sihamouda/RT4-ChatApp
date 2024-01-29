@@ -28,11 +28,13 @@ export abstract class BaseService<T, C, U> {
     return await this.repository.findOneQuery(id, populate);
   }
 
-  async create(user: C , options?:object): Promise<T> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async create(user: C, options?: object): Promise<T> {
     return await this.repository.createQuery(user);
   }
 
-  async updateOne(id: string, userUpdate: U, options?:object): Promise<T> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async updateOne(id: string, userUpdate: U, options?: object): Promise<T> {
     return await this.repository.updateOneQuery(id, userUpdate);
   }
 

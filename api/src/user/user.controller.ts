@@ -6,7 +6,6 @@ import {
   HttpCode,
   NotFoundException,
   Param,
-  Post,
   Put,
   Query,
   UploadedFile,
@@ -16,7 +15,6 @@ import {
 import { UserService } from './user.service';
 import { PageQueryDto } from '../utils/pagination/pagination-query.dto';
 import { LoggerService } from '../logger/logger.service';
-import { UserCreateDto } from './dto/user-create.dto';
 import { UserUpdateDto } from './dto/user-update.dto';
 import { UserSearchDto } from './dto/user-search.dto';
 import { PageQueryPipe } from '../utils/pagination/pagination-query.pipe';
@@ -24,8 +22,10 @@ import { UserSearchQueryPipe } from '../utils/user-search-query.pipe';
 import { User } from './schema/user.schema';
 import { SessionAuthenticationGuard } from '../authentication/guards/session-authentication.guards';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { MinIOInterceptor } from '../utils/minio.interceptor';
 
 @UseGuards(SessionAuthenticationGuard)
+@UseInterceptors(MinIOInterceptor)
 @Controller('user')
 export class UserController {
   constructor(
@@ -71,8 +71,12 @@ export class UserController {
 
   @Put(':id')
   @UseInterceptors(FileInterceptor('avatar'))
-  async updateOne(@Param('id') id: string, @UploadedFile() file: Express.Multer.File ,@Body() userUpdate: UserUpdateDto) {
-    const result = await this.userService.updateOne(id, userUpdate,file);
+  async updateOne(
+    @Param('id') id: string,
+    @UploadedFile() file: Express.Multer.File,
+    @Body() userUpdate: UserUpdateDto,
+  ) {
+    const result = await this.userService.updateOne(id, userUpdate, file);
     if (!result) {
       this.logger.error(`Unable to update User by id ${id}`);
       throw new NotFoundException(`User with ID ${id} not found`);
