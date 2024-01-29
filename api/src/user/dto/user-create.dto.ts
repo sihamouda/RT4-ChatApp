@@ -35,7 +35,5 @@ export class UserCreateDto {
   // @IsEnum(Timezone)
   // timzeone: string;
 
-  // @IsNotEmpty()
-  // @IsAlphanumeric()
-  // imagePath: string;
+  imagePath?: string;
 }

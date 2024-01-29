@@ -23,3 +23,9 @@ $ make stop
 # destroy the app volumes
 $ make destroy
 ```
+
+## Web interfaces for dev env only
+
+mongo-express: http://localhost:8081 
+
+minio: http://localhost:9000

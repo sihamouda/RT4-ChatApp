@@ -9,7 +9,9 @@ import {
   Post,
   Put,
   Query,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { PageQueryDto } from '../utils/pagination/pagination-query.dto';
@@ -21,6 +23,7 @@ import { PageQueryPipe } from '../utils/pagination/pagination-query.pipe';
 import { UserSearchQueryPipe } from '../utils/user-search-query.pipe';
 import { User } from './schema/user.schema';
 import { SessionAuthenticationGuard } from '../authentication/guards/session-authentication.guards';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @UseGuards(SessionAuthenticationGuard)
 @Controller('user')
@@ -66,14 +69,10 @@ export class UserController {
     return doc;
   }
 
-  @Post()
-  async create(@Body() user: UserCreateDto) {
-    return await this.userService.create(user);
-  }
-
   @Put(':id')
-  async updateOne(@Param('id') id: string, @Body() userUpdate: UserUpdateDto) {
-    const result = await this.userService.updateOne(id, userUpdate);
+  @UseInterceptors(FileInterceptor('avatar'))
+  async updateOne(@Param('id') id: string, @UploadedFile() file: Express.Multer.File ,@Body() userUpdate: UserUpdateDto) {
+    const result = await this.userService.updateOne(id, userUpdate,file);
     if (!result) {
       this.logger.error(`Unable to update User by id ${id}`);
       throw new NotFoundException(`User with ID ${id} not found`);
