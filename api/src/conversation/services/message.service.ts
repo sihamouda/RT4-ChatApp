@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { BaseService } from '../../utils/generics/service.generic';
-import { MessageCreateDto } from '../dto/message.dto';
+import { MessageCreateDto, MessageUpdateDto } from '../dto/message.dto';
 import { Message } from '../schema/message.schema';
 import { MessageRepository } from '../repositories/message.repository';
 import { MinioService } from 'nestjs-minio-client';
@@ -10,7 +10,7 @@ import { MessageType } from '../../utils/const';
 export class MessageService extends BaseService<
   Message,
   MessageCreateDto,
-  MessageCreateDto
+  MessageUpdateDto
 > {
   constructor(
     private readonly messageRepository: MessageRepository,
