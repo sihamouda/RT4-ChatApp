@@ -6,8 +6,10 @@ import { ConversationModule } from './conversation/conversation.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { LoggerModule } from './logger/logger.module';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { WebsocketModule } from './websocket/websocket.module';
 import idPlugin from './utils/mongoose/id.plugin';
 import { MinioModule } from 'nestjs-minio-client';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
@@ -28,8 +30,10 @@ import { MinioModule } from 'nestjs-minio-client';
       useSSL: false,
       accessKey: process.env.MINIO_ROOT_USER,
       secretKey: process.env.MINIO_ROOT_PASSWORD,
-      isGlobal: true
-    })
+      isGlobal: true,
+    }),
+    WebsocketModule,
+    EventEmitterModule.forRoot({ global: true }),
   ],
   controllers: [AppController],
   providers: [AppService],

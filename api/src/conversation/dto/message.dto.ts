@@ -14,6 +14,10 @@ export class MessageCreateDto {
   type: MessageType;
 
   @ApiProperty({ type: String })
+  @IsNotEmpty()
+  message: string | Buffer;
+
+  @ApiProperty({ type: String })
   @IsString()
   @IsNotEmpty()
   sender: string;
