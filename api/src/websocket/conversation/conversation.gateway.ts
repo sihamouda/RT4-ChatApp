@@ -9,7 +9,6 @@ import {
 import { LoggerService } from '../../logger/logger.service';
 import { Namespace, Socket } from 'socket.io';
 import { MessageCreateDto } from '../../conversation/dto/message.dto';
-import { UserService } from '../../user/user.service';
 import { MessageService } from '../../conversation/services/message.service';
 
 @WebSocketGateway({ namespace: 'conversation' })
@@ -18,7 +17,6 @@ export class ConversationGateway
 {
   constructor(
     private readonly logger: LoggerService,
-    private readonly userService: UserService,
     private readonly messageService: MessageService,
   ) {}
 
