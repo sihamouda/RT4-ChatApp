@@ -28,11 +28,11 @@ export abstract class BaseService<T, C, U> {
     return await this.repository.findOneQuery(id, populate);
   }
 
-  async create(user: C): Promise<T> {
+  async create(user: C , options?:object): Promise<T> {
     return await this.repository.createQuery(user);
   }
 
-  async updateOne(id: string, userUpdate: U): Promise<T> {
+  async updateOne(id: string, userUpdate: U, options?:object): Promise<T> {
     return await this.repository.updateOneQuery(id, userUpdate);
   }
 

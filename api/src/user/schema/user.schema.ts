@@ -40,11 +40,11 @@ export class User {
   })
   password: string;
 
-  // @Prop({
-  //   type: String,
-  //   unique: true,
-  // })
-  // imagePath: string;
+  @Prop({
+    type: String,
+    unique: true,
+  })
+  imagePath: string;
 
   @Prop({
     type: String,

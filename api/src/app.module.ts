@@ -7,6 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { LoggerModule } from './logger/logger.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import idPlugin from './utils/mongoose/id.plugin';
+import { MinioModule } from 'nestjs-minio-client';
 
 @Module({
   imports: [
@@ -21,6 +22,14 @@ import idPlugin from './utils/mongoose/id.plugin';
     ConversationModule,
     LoggerModule,
     AuthenticationModule,
+    MinioModule.register({
+      endPoint: process.env.MINIO_DOMAIN,
+      port: parseInt(process.env.MINIO_PORT),
+      useSSL: false,
+      accessKey: process.env.MINIO_ROOT_USER,
+      secretKey: process.env.MINIO_ROOT_PASSWORD,
+      isGlobal: true
+    })
   ],
   controllers: [AppController],
   providers: [AppService],
