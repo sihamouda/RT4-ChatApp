@@ -4,6 +4,8 @@ import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as session from 'express-session';
 import * as passport from 'passport';
+import { WebSocketAdapter } from './websocket/websocket.adapter';
+import { LoggerService } from './logger/logger.service';
 
 async function bootstrap() {
   const isProduction = process.env.NODE_ENV.toLowerCase().includes('prod');
@@ -56,6 +58,11 @@ async function bootstrap() {
       origin: [`http://localhost:${parseInt(process.env.CLIENT_PORT)}`],
     });
   }
+
+  const loggerService = app.get(LoggerService);
+  app.useWebSocketAdapter(
+    new WebSocketAdapter(app, loggerService, isProduction),
+  );
 
   /** 
     open http adaptater on port 3000 

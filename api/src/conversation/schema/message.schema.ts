@@ -11,6 +11,9 @@ export class Message {
   })
   type: MessageType;
 
+  @Prop({ type: String, required: true })
+  message: string;
+
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User', required: true })
   sender: string;
 

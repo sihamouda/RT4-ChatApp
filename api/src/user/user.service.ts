@@ -5,6 +5,7 @@ import { UserUpdateDto as UserUpdateDto } from './dto/user-update.dto';
 import { UserRepository } from './user.repository';
 import { BaseService } from '../utils/generics/service.generic';
 import { MinioService } from 'nestjs-minio-client';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 @Injectable()
 export class UserService extends BaseService<
@@ -15,6 +16,7 @@ export class UserService extends BaseService<
   constructor(
     private readonly userRepository: UserRepository,
     private readonly minioService: MinioService,
+    private readonly eventEmitter: EventEmitter2,
   ) {
     super(userRepository);
   }
@@ -28,10 +30,13 @@ export class UserService extends BaseService<
       file.buffer,
     );
 
-    return await this.userRepository.createQuery({
+    const newUser = await this.userRepository.createQuery({
       ...user,
       imagePath: filePath,
     });
+    this.eventEmitter.emit('create-conversation', newUser.id);
+
+    return newUser;
   }
 
   async updateOne(

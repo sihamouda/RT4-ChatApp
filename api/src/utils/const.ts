@@ -5,6 +5,7 @@ export enum MessageStatus {
 }
 export enum MessageType {
   TEXT = 'text',
+  PHOTO = 'photo',
 }
 
 export enum Theme {
