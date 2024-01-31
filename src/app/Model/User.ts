@@ -1,5 +1,10 @@
-import { Friend } from "./friend";
+import { Friend } from './friend';
 
-export class User {
-    constructor(public name='',public image='', public friends:Friend[]){}
+export class Person {
+  constructor(
+    public first_name = '',
+    public last_name = '',
+    public image = '',
+    public friends: Friend[]
+  ) {}
 }

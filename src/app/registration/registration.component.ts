@@ -9,5 +9,5 @@ import { RegformComponent } from './regform/regform.component';
   styleUrl: './registration.component.css'
 })
 export class RegistrationComponent {
-
+  
 }

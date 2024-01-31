@@ -5,13 +5,14 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [EclipseComponent,CommonModule],
+  imports: [EclipseComponent, CommonModule],
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+  styleUrl: './user.component.css',
 })
 export class UserComponent {
-  dimension:string="100px";
-  @Input() src!:string;
-  @Input() hasBadge:boolean=true;
-  @Input() user!:string;
+  dimension: string = '100px';
+  @Input() src!: string;
+  @Input() hasBadge: boolean = true;
+  @Input() first_name!: string;
+  @Input() last_name!: string;
 }

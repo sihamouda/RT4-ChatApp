@@ -1,20 +1,26 @@
-<form class="mt-5" #AuthForm="ngForm" (ngSubmit) = "onSubmit(AuthForm)" >
+<form class="mt-5" #AuthForm="ngForm" (ngSubmit)="onSubmit(AuthForm)">
     <div *ngFor="let field of fields">
-        <label for="{{field.name}}" class="form-label mt-3">{{field.name}}</label>
-        <input minlength="4" ngModel required type="{{field.type}}" class="form-control inputform" name="{{field.name}}"
-            *ngIf="field.name!='EMAIL'" #{{field.name}}="ngModel">
-        <input ngModel email required type="{{field.type}}" class="form-control inputform" name="{{field.name}}"
-            *ngIf="field.name=='EMAIL'" #{{field.name}}="ngModel">
-        <div class="alert alert-danger validation" *ngIf="AuthForm.controls[field.name]?.invalid && AuthForm.controls[field.name]?.dirty">
+        <label for="{{field.name}}" class="form-label mt-3">{{field.label}}</label>
+        <input minlength="5" ngModel required type="{{field.type}}" class="form-control inputform" name="{{field.name}}"
+            #{{field.name}}="ngModel">
+        <div class="alert alert-danger validation"
+            *ngIf="AuthForm.controls[field.name]?.invalid && AuthForm.controls[field.name]?.dirty">
             {{field.description}}
         </div>
     </div>
     <p class="mt-3 float-end"><a class="link-opacity-50 forgot">FORGOT PASSWORD?
         </a></p>
     <div class="text-center">
-        <button [disabled]="AuthForm.invalid" class="btn mt-3 logbtn">
-            LOGIN
+        <div *ngIf="!showloader">
+            <button [disabled]="AuthForm.invalid" class="btn mt-3 logbtn">
+                LOGIN
+            </button>
+            <p class="mt-3"><a class="link-opacity-50 create" [routerLink]="['registration']">CREATE ACCOUNT</a></p>
+        </div>
+
+        <button class="btn btn-primary logbtn" disabled *ngIf="showloader">
+            <span class="spinner-border spinner-border-sm"></span>
+            Loading..
         </button>
-        <p class="mt-3"><a class="link-opacity-50 create" [routerLink]="['registration']">CREATE ACCOUNT</a></p>
     </div>
 </form>

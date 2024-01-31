@@ -3,8 +3,9 @@
   'width': dimension,
   'background-color':background
 }">
-<span class="position-absolute bottom-0 end-0 p-1 border border-light rounded-circle"  [ngClass]="{'bg-success': isActive, 'bg-danger': !isActive}" *ngIf="hasBool">
-</span>
-    <div>{{text}}</div>
-    <img src="assets/images/{{src}}" *ngIf="src">
+  <span class="position-absolute bottom-0 end-0 p-1 border border-light rounded-circle"
+    [ngClass]="{'bg-success': isActive, 'bg-danger': !isActive}" *ngIf="hasBool">
+  </span>
+  <div>{{text}}</div>
+  <img src="{{src|defaultImage}}" *ngIf="src">
 </div>

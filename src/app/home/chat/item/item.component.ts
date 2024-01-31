@@ -6,14 +6,15 @@ import { EclipseComponent } from '../eclipse/eclipse.component';
   standalone: true,
   imports: [EclipseComponent],
   templateUrl: './item.component.html',
-  styleUrl: './item.component.css'
+  styleUrl: './item.component.css',
 })
 export class ItemComponent {
-  public dimension:string="50px";
-  @Input() hasBool:boolean=true;
-  @Input() isActive:boolean=false;
-  @Input() name!:string;
-  @Input() message!:string;
-  @Input() time!:string;
-  @Input() image!:string
+  public dimension: string = '50px';
+  @Input() hasBool: boolean = true;
+  @Input() isActive: boolean = false;
+  @Input() first_name!: string;
+  @Input() last_name!: string;
+  @Input() message!: string;
+  @Input() time!: string;
+  @Input() image!: string;
 }
