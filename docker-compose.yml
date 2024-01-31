@@ -4,8 +4,8 @@ services:
   api:
     container_name: api
     env_file: .exemple.env
-    volumes:
-      - ./api/src:/app/src
+    # volumes:
+    #   - ./api/src:/app/src
     build:
       context: ./api
     ports:

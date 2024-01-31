@@ -7,6 +7,8 @@ import { Conversation, ConversationSchema } from './schema/conversation.schema';
 import { ConversationService } from './services/conversation.service';
 import { MessageService } from './services/message.service';
 import { UserModule } from '../user/user.module';
+import { ConversationController } from './controllers/conversation.controller';
+import { MessageController } from './controllers/message.controller';
 
 @Module({
   imports: [
@@ -22,6 +24,7 @@ import { UserModule } from '../user/user.module';
     MessageService,
     ConversationService,
   ],
+  controllers: [MessageController, ConversationController],
   exports: [MessageService],
 })
 export class ConversationModule {}
