@@ -6,10 +6,11 @@ import { UserComponent } from '../../chat/user/user.component';
   standalone: true,
   imports: [UserComponent],
   templateUrl: './rightsidebar.component.html',
-  styleUrl: './rightsidebar.component.css'
+  styleUrl: './rightsidebar.component.css',
 })
 export class RightsidebarComponent {
-  @Input() recieverSourceImg!:string ;
-  @Input() recieverName!:string;
-  public hasBadge:boolean=false
+  @Input() recieverSourceImg!: string;
+  @Input() recieverFirst_Name!: string;
+  @Input() recieverlast_Name!: string;
+  public hasBadge: boolean = false;
 }

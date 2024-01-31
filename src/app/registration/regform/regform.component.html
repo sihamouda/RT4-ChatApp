@@ -1,20 +1,41 @@
-<form class="row g-3" #RegForm="ngForm" (ngSubmit) = "onSubmit(RegForm)">
+<form class="row g-3" #RegForm="ngForm" (ngSubmit)="onSubmit(RegForm)">
     <div class="col-md-4" *ngFor="let field of fields">
-        <label for="{{field.name}}" class="form-label">{{field.name}}</label>
-        <input minlength="4" ngModel required type="{{field.type}}" class="form-control inputform" name="{{field.name}}"
-            *ngIf="field.name!='EMAIL' && field.name!='CONFIRM PASSWORD'" #{{field.name}}="ngModel">
+        <label for="{{field.name}}" class="form-label">{{field.label}}</label>
+
+        <input minlength="5" ngModel required type="{{field.type}}" class="form-control inputform" name="{{field.name}}"
+            *ngIf="field.label!='EMAIL' && field.label!='CONFIRM PASSWORD'" #{{field.name}}="ngModel">
+
         <input ngModel email required type="{{field.type}}" class="form-control inputform" name="{{field.name}}"
-            *ngIf="field.name=='EMAIL'" #{{field.name}}="ngModel">
-        <input ngModel email required type="{{field.type}}" class="form-control inputform" name="{{field.name}}"
-            *ngIf="field.name=='CONFIRM PASSWORD'" #{{field.name}}="ngModel" (ngModelChange)='checkPasswords(RegForm)'>
-        <div class="alert alert-danger validation" *ngIf="!passwordsMatching && field.name=='CONFIRM PASSWORD' && RegForm.controls[field.name]?.invalid && RegForm.controls[field.name]?.dirty">
-                Passwords did not match
+            *ngIf="field.label==='EMAIL'" #{{field.name}}="ngModel">
+
+        <input minlength="5" ngModel required type="{{field.type}}" class="form-control inputform" name="{{field.name}}"
+            *ngIf="field.label==='CONFIRM PASSWORD'" #{{field.name}}="ngModel"
+            (ngModelChange)='checkPasswords(RegForm)'>
+
+        <div class="alert alert-danger validation"
+            *ngIf="(!passwordsMatching && field.name==='CONFIRM PASSWORD') && (RegForm.controls[field.name]?.invalid && RegForm.controls[field.name]?.dirty)">
+            Passwords did not match
         </div>
-        <div class="alert alert-danger validation" *ngIf="RegForm.controls[field.name]?.invalid && RegForm.controls[field.name]?.dirty && field.name!='CONFIRM PASSWORD'">
+
+        <div class="alert alert-danger validation"
+            *ngIf="(RegForm.controls[field.name]?.invalid && RegForm.controls[field.name]?.dirty) && (field.name!='CONFIRM PASSWORD')">
             {{field.description}}
         </div>
     </div>
-    <div class="col-12 mt-5 text-center">
-        <button class="btn btn-primary logbtn" [disabled]="RegForm.invalid" type="submit">CREATE ACCOUNT</button>
+
+    <div class="col-md-4 mt-4">
+        <label for="avatar" class="form-label">Choose your image</label>
+        <input ngModel required type="file" class="form-control" name="avatar" #imageFile="ngModel"
+            (change)="getFiles($event)">
     </div>
+
+    <div class="col-12 mt-5 text-center">
+        <button [disabled]="RegForm.invalid" class="btn btn-primary logbtn" type="submit" *ngIf="!showloader">CREATE
+            ACCOUNT</button>
+        <button class="btn btn-primary logbtn" disabled *ngIf="showloader">
+            <span class="spinner-border spinner-border-sm"></span>
+            Loading..
+        </button>
+    </div>
+
 </form>

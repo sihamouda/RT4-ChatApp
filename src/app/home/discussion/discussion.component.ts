@@ -9,27 +9,22 @@ import { Friend } from '../../Model/friend';
 @Component({
   selector: 'app-discussion',
   standalone: true,
-  imports: [ConversationComponent,RightsidebarComponent,CommonModule],
+  imports: [ConversationComponent, RightsidebarComponent, CommonModule],
   templateUrl: './discussion.component.html',
-  styleUrl: './discussion.component.css'
+  styleUrl: './discussion.component.css',
 })
 export class DiscussionComponent implements OnInit {
-  @Input() senderImage:string="dey.png";
-  friend:Friend=new Friend('','',true,[])
+  @Input() senderImage: string = 'dey.png';
+  friend: Friend = new Friend('', '', '', true, []);
 
-  constructor(
-    private personneService: PersonneService
-  ){}
+  constructor(private personneService: PersonneService) {}
 
   ngOnInit(): void {
-    this.personneService.personneDetailSubject.subscribe((personne)=>{
-      this.friend.name = personne.name;
+    this.personneService.personneDetailSubject.subscribe((personne) => {
+      this.friend.first_name = personne.first_name;
+      this.friend.last_name = personne.last_name;
       this.friend.image = personne.image;
-      this.friend.discussion=personne.discussion
+      this.friend.discussion = personne.discussion;
     });
   }
-
-  
-
-
 }
