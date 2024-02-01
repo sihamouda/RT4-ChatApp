@@ -11,7 +11,7 @@ $ cd api && npm install
 $ cd web && npm install
 ```
 
-## Running the app
+## Running the backend
 
 ```bash
 # start the app
