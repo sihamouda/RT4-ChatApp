@@ -1,5 +1,6 @@
 <div class="messages">
     <div *ngFor="let message of messages">
-        <app-message [isSender]="message.isSender" image="{{(message.isSender)?senderImage:recieverImage}}" contenu="{{message.contenu}}"></app-message>
+        <app-message [isSender]="message.isSender" image="{{(message.isSender)?senderImage:recieverImage}}"
+            contenu="{{message.contenu}}" [message]="message"></app-message>
     </div>
 </div>

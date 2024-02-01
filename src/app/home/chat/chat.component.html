@@ -1,14 +1,19 @@
-<div class="container mt-3">
-    <div class="title">
-        CHAT
+<div class="container mt-3 chat">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="title">
+            CHAT
+        </div>
+        <div class="clickable-image" (click)="onClick()">
+            <img src="assets/images/logout.png" alt="Third Image">
+        </div>
     </div>
     <div class="mt-2">
-        <app-user src="{{user.image}}" first_name="{{user.first_name}}" last_name="{{user.last_name}}"></app-user>
+        <app-user src="{{user.imagePath}}" first_name="{{user.first_name}}" last_name="{{user.last_name}}"></app-user>
     </div>
     <div class="mt-4">
         <app-teams [teams]="teams"></app-teams>
     </div>
     <div class="mt-4">
-        <app-chats [personnes]="user.friends"></app-chats>
+        <app-chats [friends]="user.friends"></app-chats>
     </div>
 </div>

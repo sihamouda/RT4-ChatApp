@@ -3,12 +3,11 @@ import { Subject } from 'rxjs';
 import { Friend } from '../Model/friend';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PersonneService {
   personneDetailSubject = new Subject<Friend>();
-  constructor() { }
-
+  constructor() {}
 
   showPersonneDiscussion(friend: Friend) {
     this.personneDetailSubject.next(friend);

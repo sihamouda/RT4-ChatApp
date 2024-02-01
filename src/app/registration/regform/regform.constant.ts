@@ -18,12 +18,6 @@ export const fields = [
     description: 'USERNAME must contain more then 5 caracteres',
   },
   {
-    type: 'date',
-    label: 'BIRTHDATE',
-    name: 'birthdate',
-    description: 'You need to choose birthdate',
-  },
-  {
     type: 'text',
     label: 'EMAIL',
     name: 'email',

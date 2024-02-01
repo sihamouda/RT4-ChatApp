@@ -11,12 +11,17 @@ import { Friend } from '../../../Model/friend';
   templateUrl: './chats.component.html',
   styleUrl: './chats.component.css',
 })
-export class ChatsComponent {
+export class ChatsComponent implements OnInit {
   searchTerm: string = '';
-  @Input() personnes!: Friend[];
+  @Input() friends!: Friend[];
+
+  constructor() {}
+  ngOnInit(): void {
+    console.log('friendss : ', this.friends);
+  }
 
   filteredPersonne() {
-    return this.personnes.filter((personne) =>
+    return this.friends.filter((personne) =>
       personne.first_name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }

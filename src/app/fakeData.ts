@@ -1,7 +1,8 @@
-import { Message } from './Model/Message';
+import { Conversation } from './Model/Conversation';
+import { DisplayMessage as Message } from './Model/DisplayMessage';
 import { Team } from './Model/Team';
-import { Person } from './Model/User';
 import { Friend } from './Model/friend';
+import { User } from './Model/User';
 
 export const discussion: Message[] = [
   new Message(false, 'Your message goes here ....'),
@@ -17,29 +18,58 @@ const discussion2: Message[] = [
   new Message(true, 'Hi from Hay elkhadhra'),
 ];
 
-const friends: Friend[] = [
-  new Friend('Khaldoun', 'TAKTAK', 'khaldoun.png', true, discussion),
-  new Friend('Anis', 'Hammouda', 'anis.png', false, discussion),
-  new Friend('Oussema', 'Chaouachi', 'chaouachi.png', true, discussion),
-  new Friend('Adame', 'Dey', 'dey.png', true, discussion),
-];
+let conversation!: Conversation;
+
+const friends: Friend = new Friend(
+  '',
+  'Khaldoun',
+  'TAKTAK',
+  'khaldoun.png',
+  true,
+  discussion,
+  conversation
+);
 
 const friends2: Friend[] = [
-  new Friend('Khaldoun', 'TAKTAK', 'khaldoun.png', true, discussion2),
-  new Friend('Ahmed', 'Rjiba', 'rjiba.png', true, discussion2),
-  new Friend('Oussema', 'Chaouachi', 'chaouachi.png', true, discussion2),
-  new Friend('Adame', 'Dey', 'dey.png', true, discussion2),
+  new Friend(
+    '',
+    'Khaldoun',
+    'TAKTAK',
+    'khaldoun.png',
+    true,
+    discussion2,
+    conversation
+  ),
+  new Friend(
+    '',
+    'Ahmed',
+    'Rjiba',
+    'rjiba.png',
+    true,
+    discussion2,
+    conversation
+  ),
+  new Friend(
+    '',
+    'Oussema',
+    'Chaouachi',
+    'chaouachi.png',
+    true,
+    discussion2,
+    conversation
+  ),
+  new Friend('', 'Adame', 'Dey', 'dey.png', true, discussion2, conversation),
 ];
 
-export const users: Person[] = [
-  new Person('Ahmed', 'Rjiba', 'rjiba.png', friends),
-  new Person('Anis', 'Hammouda', 'anis.png', friends2),
+export const users: User[] = [
+  new User('', 'Ahmed', 'Rjiba', 'rjiba.png', '', '', friends2),
+  new User('', 'Anis', 'Hammouda', 'anis.png', '', '', friends2),
 ];
 
 export const Teams: Team[] = [
-  new Team('#8A91D7', 'G', 'Rjiba'),
-  new Team('#C76DD6', 'S', 'Rjiba'),
-  new Team('#78D0B0', 'D', 'Rjiba'),
-  new Team('#E1D094', 'F', 'Rjiba'),
-  new Team('#E8A179', 'R', 'Rjiba'),
+  new Team('#8A91D7', 'P', 'Projet Web'),
+  new Team('#C76DD6', 'R', 'RT4'),
+  new Team('#78D0B0', 'C', 'Chats'),
+  new Team('#E1D094', 'C', 'Club'),
+  new Team('#E8A179', 'I', 'IEEE'),
 ];

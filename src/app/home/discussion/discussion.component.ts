@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ConversationComponent } from './conversation/conversation.component';
 import { RightsidebarComponent } from './rightsidebar/rightsidebar.component';
-import { Message } from '../../Model/Message';
 import { PersonneService } from '../personne.service';
 import { CommonModule } from '@angular/common';
 import { Friend } from '../../Model/friend';
+import { User } from '../../Model/User';
+import { Conversation } from '../../Model/Conversation';
 
 @Component({
   selector: 'app-discussion',
@@ -14,17 +15,16 @@ import { Friend } from '../../Model/friend';
   styleUrl: './discussion.component.css',
 })
 export class DiscussionComponent implements OnInit {
-  @Input() senderImage: string = 'dey.png';
-  friend: Friend = new Friend('', '', '', true, []);
+  @Input() user!: User;
+  conversation!: Conversation;
+  friend!: Friend;
 
-  constructor(private personneService: PersonneService) {}
-
-  ngOnInit(): void {
+  constructor(private personneService: PersonneService) {
     this.personneService.personneDetailSubject.subscribe((personne) => {
-      this.friend.first_name = personne.first_name;
-      this.friend.last_name = personne.last_name;
-      this.friend.image = personne.image;
-      this.friend.discussion = personne.discussion;
+      this.friend = personne;
+      console.log('getFriend : ', this.friend);
     });
   }
+
+  ngOnInit(): void {}
 }

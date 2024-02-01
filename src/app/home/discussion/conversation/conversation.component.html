@@ -1,17 +1,19 @@
 <div class="mt-1 conv container">
-    <div class="d-flex align-items-center border p-3 rounded-pill z-2">
-        <div class="content">
-            <div class="name">{{friend.first_name}} {{friend.last_name}}</div>
-            <div class="message">Active</div>
+    <div>
+        <div class="d-flex align-items-center border p-3 rounded-pill z-2">
+            <div class="content">
+                <div class="name">{{friend.first_name}} {{friend.last_name}}</div>
+                <div class="message">Active</div>
+            </div>
+            <div>
+                <img src="assets/images/notification.png">
+                <img class="ms-2" src="assets/images/more.png">
+            </div>
         </div>
-        <div>
-            <img src="assets/images/notification.png">
-            <img class="ms-2" src="assets/images/more.png">
-        </div>
-    </div>
 
-    <app-list-message [messages]="friend.discussion" recieverImage="{{friend.image}}"
-        senderImage="{{senderImage}}"></app-list-message>
+        <app-list-message [messages]="friend.discussion" recieverImage="{{friend.image}}"
+            senderImage="{{user.imagePath}}"></app-list-message>
+    </div>
 
     <div class="d-flex input-container mt-2">
         <input class="ms-3" type="text" placeholder="Type here!" (keyup.enter)="onEnterKeyPressed()"

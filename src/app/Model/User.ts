@@ -1,10 +1,13 @@
 import { Friend } from './friend';
 
-export class Person {
+export class User {
   constructor(
+    public id = '',
     public first_name = '',
     public last_name = '',
-    public image = '',
+    public username = '',
+    public imagePath = '',
+    public status = '',
     public friends: Friend[]
   ) {}
 }

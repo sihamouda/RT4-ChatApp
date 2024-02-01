@@ -1,42 +1,39 @@
 .forgot {
-    color: #a1a1a1;
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
-  
-  .inputform {
-    height: 50px;
-    flex-shrink: 0;
-    border-radius: 8px;
-    background: #d9d9d9;
-  }
-  
-  .logbtn {
-    width: 384px;
-    height: 50px;
-    flex-shrink: 0;
-    border-radius: 10px;
-    background: #a251e1;
-    color: #fff;
-    font-family: Inter;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-  }
-  
-  .create {
-    color: #a251e1;
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
+  color: #a1a1a1;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
 
-  .ng-invalid.ng-touched{
-    border-color: red;
+.inputform {
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #d9d9d9;
+}
+
+.logbtn {
+  width: 384px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #a251e1;
+  color: #fff;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.create {
+  color: #a251e1;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.ng-invalid.ng-touched {
+  border-color: red;
 }

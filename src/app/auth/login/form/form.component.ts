@@ -3,12 +3,11 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { UserService } from '../../../service/user.service';
 import { UserLogin } from '../../../service/type';
 import { ToastrService } from 'ngx-toastr';
-import { CookieService } from 'ngx-cookie-service';
 import { fields } from './form.constant';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-form',
@@ -18,14 +17,13 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
   styleUrl: './form.component.css',
 })
 export class FormComponent {
-  showloader: boolean = false;
-  fields = fields;
+  public showloader: boolean = false;
+  public fields = fields;
 
   constructor(
     private route: Router,
-    private userService: UserService,
     private toast: ToastrService,
-    private cookieService: CookieService
+    private authService: AuthService
   ) {}
 
   onSubmit(Loginform: NgForm) {
@@ -34,11 +32,11 @@ export class FormComponent {
       username: Loginform.value['username'],
       password: Loginform.value['password'],
     };
-    this.userService.login(userLogin).subscribe(
+    this.authService.login(userLogin).subscribe(
       (loginResponse: HttpResponse<any>) => {
         this.showloader = false;
         this.toast.success('User logged succcessfully');
-        this.route.navigate(['home', Loginform.value['username']]);
+        this.route.navigate(['home', userLogin['username']]);
       },
       (err: HttpErrorResponse) => {
         this.showloader = false;

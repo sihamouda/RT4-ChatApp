@@ -1,7 +1,7 @@
 <div>
-    <div class="row" *ngIf="friend.first_name">
+    <div class="row discussion" *ngIf="friend.first_name">
         <div class="col-8 conv">
-            <app-conversation [friend]="friend" senderImage="{{senderImage}}"></app-conversation>
+            <app-conversation [friend]="friend" [user]="user"></app-conversation>
         </div>
         <div class="col-4">
             <app-rightsidebar recieverFirst_Name="{{friend.first_name}}" recieverlast_Name="{{friend.last_name}}"
@@ -9,6 +9,6 @@
         </div>
     </div>
     <div class="d-flex justify-content-center" *ngIf="!friend.first_name">
-        CHOOSE A PERSON TO DISCUSS WITH.
+        <p>CHOOSE A PERSON TO DISCUSS WITH.</p>
     </div>
 </div>

@@ -11,9 +11,3 @@ export type UserLogin = {
   username: string;
   password: string;
 };
-
-export type Conversation = {
-  id: string;
-  members: string[];
-  messages: string[];
-};

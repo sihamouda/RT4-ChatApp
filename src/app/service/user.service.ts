@@ -6,8 +6,9 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { Conversation, UserLogin, UserRegistration } from './type';
-import { User } from './User';
+import { UserLogin, UserRegistration } from './type';
+import { User } from '../Model/User';
+import { Conversation } from '../Model/Conversation';
 
 @Injectable({
   providedIn: 'root',
@@ -16,27 +17,6 @@ export class UserService {
   private baseUrl = 'http://localhost:3000';
 
   constructor(private httpclient: HttpClient) {}
-
-  public login(userLogin: UserLogin): Observable<HttpResponse<any>> {
-    const url = `${this.baseUrl}/auth/login`;
-
-    return this.httpclient.post<HttpResponse<any>>(url, userLogin, {
-      observe: 'response',
-      withCredentials: true,
-    });
-  }
-
-  public saveUser(formData: FormData): Observable<HttpResponse<any>> {
-    const url = `${this.baseUrl}/auth/register`;
-
-    return this.httpclient.post<HttpResponse<any>>(url, formData);
-  }
-
-  public logout(): Observable<HttpResponse<any>> {
-    const url = `${this.baseUrl}/auth/logout`;
-
-    return this.httpclient.post<HttpResponse<any>>(url, {});
-  }
 
   public getUsers(): Observable<User[]> {
     const url = `${this.baseUrl}/user`;
