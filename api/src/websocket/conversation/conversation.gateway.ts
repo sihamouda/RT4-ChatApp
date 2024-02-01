@@ -46,12 +46,33 @@ export class ConversationGateway
     );
   }
 
+  @SubscribeMessage('leaveAllRooms')
+  handleLeaveAllRooms(client: Socket) {
+    const rooms = Object.keys(client.rooms);
+
+    rooms.forEach((room) => {
+      if (room !== client.id) {
+        client.leave(room);
+        this.logger.log(
+          `Client ${client.id} left room: ${room}`,
+          ConversationGateway.name,
+        );
+      }
+    });
+  }
+
+  @SubscribeMessage('joinRoom')
+  handleJoinRoom(client: Socket, room: string) {
+    client.join(room);
+    this.logger.log(`Client ${client.id} joined room: ${room}`);
+  }
+
   @SubscribeMessage('messageToServer')
   async handleMessage(client: Socket, message: MessageCreateDto) {
     const { conversation } = message;
 
     const messageSaved = await this.messageService.create(message);
 
-    client.to(conversation).emit('messageToClient', messageSaved);
+    this.io.to(conversation).emit('messageToClient', messageSaved);
   }
 }
