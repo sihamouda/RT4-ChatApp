@@ -1,0 +1,20 @@
+.custom-badge {
+  width: 90px;
+  background: #c3efd2;
+  border-radius: 5px;
+  padding: 8px;
+  margin-top: 5px;
+  color: #27ad55;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.name {
+  color: #525252;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}

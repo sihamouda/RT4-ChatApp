@@ -1,0 +1,21 @@
+.login {
+  width: 547px;
+  min-height: 620px;
+  flex-shrink: 0;
+}
+
+.title {
+  color: #525252;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.subtitle {
+  color: #a251e1;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}

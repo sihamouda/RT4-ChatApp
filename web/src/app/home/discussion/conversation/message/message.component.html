@@ -1,0 +1,13 @@
+<div class="d-flex mb-2" [ngClass]="{'flex-row-reverse':isSender}">
+    <div class="eclipse align-self-center mt-4">
+        <app-eclipse dimension="{{dimension}}" src="{{image}}"></app-eclipse>
+    </div>
+    <div>
+        <span class="time">{{message.time}} </span>
+        <div class="message" [ngStyle]="{
+          'background-color':isSender ? '#D3F3DC' : '#EFEFEF'
+        }">
+            <p>{{contenu}}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+.message {
+  padding: 10px;
+  border-radius: 10px;
+  width: 286px;
+  min-height: 47px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+}
+
+.message p {
+  color: #525252;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.time {
+  margin-left: 10px;
+  color: #a1a1a1;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

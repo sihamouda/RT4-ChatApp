@@ -1,0 +1,64 @@
+.content {
+  flex: 1;
+  margin-left: 5px;
+}
+
+.name {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.conv {
+  background-color: #f9f9f9;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container {
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 1px 4px 0px rgba(198, 198, 198, 0.25);
+  transition: background-color 0.3s ease-in-out; /* Add transition for a smooth effect */
+}
+
+.input-container:focus-within {
+  border: 2px solid #86b7fe; /* Change the color and width as desired */
+}
+
+input {
+  height: 57px;
+  width: 80%;
+  border: none;
+  white-space: normal;
+}
+
+input:focus {
+  outline: none;
+  border-color: none;
+  min-height: 57px;
+}
+
+.messages {
+  max-height: 600px;
+  overflow: auto;
+}
+
+button {
+  width: 89px;
+  height: 39px;
+  border-radius: 5px;
+  background: #a251e1;
+  color: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border-color: #a251e1;
+}
+
+button:hover {
+  background: #b28dcf;
+}
