@@ -6,11 +6,15 @@ import * as session from 'express-session';
 import * as passport from 'passport';
 import { WebSocketAdapter } from './websocket/websocket.adapter';
 import { LoggerService } from './logger/logger.service';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
-  const isProduction = process.env.NODE_ENV.toLowerCase().includes('prod');
-
   const app = await NestFactory.create(AppModule);
+  const configService = app.get(ConfigService);
+  const loggerService = app.get(LoggerService);
+
+  const isProduction = configService.get<boolean>('isProduction');
+
   app.useGlobalPipes(new ValidationPipe());
 
   /** 
@@ -19,12 +23,12 @@ async function bootstrap() {
   app.use(
     session({
       name: 'session_id',
-      secret: process.env.SESSION_SECRET,
+      secret: configService.get<string>('session_secret'),
       resave: true,
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        secure: process.env.HTTPS_ENABLED === 'true',
+        secure: configService.get<boolean>('isHTTPS'),
         path: '/',
         maxAge: isProduction
           ? 1000 * 60 * 60 * 24 //prod 24h
@@ -55,13 +59,12 @@ async function bootstrap() {
     enable cors
    **/
     app.enableCors({
-      origin: [`http://localhost:${parseInt(process.env.CLIENT_PORT)}`],
+      origin: [`http://localhost:${configService.get<string>('frontend')}`],
     });
   }
 
-  const loggerService = app.get(LoggerService);
   app.useWebSocketAdapter(
-    new WebSocketAdapter(app, loggerService, isProduction),
+    new WebSocketAdapter(app, loggerService, configService),
   );
 
   /** 

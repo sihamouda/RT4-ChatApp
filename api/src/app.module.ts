@@ -10,20 +10,32 @@ import { WebsocketModule } from './websocket/websocket.module';
 import idPlugin from './utils/mongoose/id.plugin';
 import { MinioModule } from 'nestjs-minio-client';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import config from './config/config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.MONGO_URI, {
-      dbName: process.env.MONGO_DB,
-      connectionFactory: (connection) => {
-        connection.plugin(idPlugin);
-        return connection;
-      },
+    ConfigModule.forRoot({
+      load: [config],
+      isGlobal: true,
+    }),
+    MongooseModule.forRootAsync({
+      // imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<'string'>('database.uri'),
+        dbName: configService.get<'string'>('database.host'),
+        connectionFactory: (connection) => {
+          connection.plugin(idPlugin);
+          return connection;
+        },
+      }),
+      inject: [ConfigService],
     }),
     UserModule,
     ConversationModule,
     LoggerModule,
     AuthenticationModule,
+    // TODO: make MINIO MODULE ASYNC AND READ FROM CONFIG
     MinioModule.register({
       endPoint: process.env.MINIO_DOMAIN,
       port: parseInt(process.env.MINIO_PORT),

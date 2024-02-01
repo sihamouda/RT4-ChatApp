@@ -6,6 +6,7 @@ import { UserRepository } from './user.repository';
 import { BaseService } from '../utils/generics/service.generic';
 import { MinioService } from 'nestjs-minio-client';
 import { EventEmitter2 } from '@nestjs/event-emitter';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class UserService extends BaseService<
@@ -17,15 +18,18 @@ export class UserService extends BaseService<
     private readonly userRepository: UserRepository,
     private readonly minioService: MinioService,
     private readonly eventEmitter: EventEmitter2,
+    private configService: ConfigService,
   ) {
     super(userRepository);
   }
+
+  bucket = this.configService.get<string>('minio.bucket');
 
   async create(user: UserCreateDto, file: Express.Multer.File): Promise<User> {
     const fileName = Date.now() + file.originalname;
     const filePath = 'avatars/' + fileName;
     await this.minioService.client.putObject(
-      process.env.MINIO_DEFAULT_BUCKETS,
+      this.bucket,
       filePath,
       file.buffer,
     );
@@ -48,7 +52,7 @@ export class UserService extends BaseService<
       const fileName = Date.now() + file.originalname;
       const filePath = 'avatars/' + fileName;
       await this.minioService.client.putObject(
-        process.env.MINIO_DEFAULT_BUCKETS,
+        this.bucket,
         filePath,
         file.buffer,
       );

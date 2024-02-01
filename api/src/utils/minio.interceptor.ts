@@ -6,16 +6,21 @@ import {
 } from '@nestjs/common';
 import { Observable, map } from 'rxjs';
 import { User } from '../user/schema/user.schema';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class MinIOInterceptor implements NestInterceptor {
+  constructor(private configService: ConfigService) {}
+
+  isProduction = this.configService.get<boolean>('isProduction');
+  bucket = this.configService.get<string>('minio.bucket');
+  minioPort = this.configService.get<string>('minio.port');
+  minioDomain = this.isProduction
+    ? this.configService.get<string>('minio.domain')
+    : 'localhost';
+
   transformUrl(data: User) {
-    const isProduction = process.env.NODE_ENV.toLowerCase().includes('prod');
-    let minioDomain = process.env.MINIO_DOMAIN;
-    if (!isProduction) {
-      minioDomain = 'localhost';
-    }
-    data.imagePath = `http://${minioDomain}:${process.env.MINIO_PORT}/${process.env.MINIO_DEFAULT_BUCKETS}/${data.imagePath}`;
+    data.imagePath = `http://${this.minioDomain}:${this.minioPort}/${this.bucket}/${data.imagePath}`;
     return data;
   }
   intercept(
