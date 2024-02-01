@@ -5,6 +5,7 @@ import { Message } from '../schema/message.schema';
 import { MessageRepository } from '../repositories/message.repository';
 import { MinioService } from 'nestjs-minio-client';
 import { MessageType } from '../../utils/const';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class MessageService extends BaseService<
@@ -15,16 +16,19 @@ export class MessageService extends BaseService<
   constructor(
     private readonly messageRepository: MessageRepository,
     private readonly minioService: MinioService,
+    private configService: ConfigService,
   ) {
     super(messageRepository);
   }
+
+  bucket = this.configService.get<string>('minio.bucket');
 
   async create(message: MessageCreateDto): Promise<Message> {
     if (message.type === MessageType['PHOTO']) {
       const fileName = Date.now() + message.sender;
       const filePath = 'messages/' + message.conversation + fileName;
       await this.minioService.client.putObject(
-        process.env.MINIO_DEFAULT_BUCKETS,
+        this.bucket,
         filePath,
         message.message,
       );
